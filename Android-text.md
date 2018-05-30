@@ -33,6 +33,6 @@
 -
 
 ### Chapter
-
+---
 - intentのExtrasについて
-  - Extras are arbitrary data that the calling activitiy can include with an intent. You can think of them like constructor arguments, even though you cannnot use a custom constructor with an activity subclass.
+  - Extras are arbitrary data that the calling activitiy can include with an intent. **You can think of them like constructor arguments**, even though you cannnot use a custom constructor with an activity subclass.

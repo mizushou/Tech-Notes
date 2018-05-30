@@ -84,19 +84,34 @@
         <View />
     </ViewGroup>
     <include layout="@layout/layout_resource"/>
-</ViewGroup>```
+</ViewGroup>
+```
 - レイアウトリソース
   - [レイアウトリソース](https://developer.android.com/guide/topics/resources/layout-resource.html)
 
 ### Fragment
 - [Android はじめてのFragment](https://qiita.com/Reyurnible/items/dffd70144da213e1208b)
 - [Fragment](https://developer.android.com/guide/components/fragments.html)
+- [複数画面をサポートする](https://developer.android.com/guide/practices/screens_support)
 
 - Fragmentとはどんなものか？
-  - **ライフサイクル**を持ったView
+  - **ライフサイクル** を持ったView
   - ViewとActivityの中間のイメージ
   - Activityに配置できる部品としてのActivityのイメージ
+  - 静的なActivityに対して、動的なFragmentなイメージ
 - Fragmentを使うメリット？
   - Fragmentは複数の画面で使いまわすことができる
   - FragmentはActivityと違って**親子関係**を持てる
   - Fragmentに関する処理は１つの**Transaction**として扱うことができる（Activityのバックスタックが利用される）
+- デザインの指針
+  - アクティビティのレイアウトをフラグメントに分割する -> 各フラグメント上で動的にUIを変化させることができる
+- AndroidDevelperよりFragmentに関する記述抜粋
+  - フラグメントはアクティビティの実行中に追加したり削除したりできます（別のアクティビティで再利用できる「サブ アクティビティ」のようなものです）。
+  - **フラグメントは常にアクティビティに埋め込まれている必要がある**
+  - フラグメントのライフサイクルはホストの**アクティビティのライフサイクルの影響を直接受ける**。
+  - フラグメントのトランザクションを実行するとき、アクティビティで管理されているバックスタックにそれを追加することもできます。
+  - バックスタックでは、「戻る」を選択するとフラグメントのトランザクションを戻す（前に戻る）ことができます
+  - アクティビティのレイアウトの一部としてフラグメントを追加すると、**フラグメントはアクティビティのビュー階層の ViewGroup に置かれ、フラグメントが自身のビュー レイアウトを定義します。**
+  - フラグメントをアクティビティのレイアウトに挿入するには、
+    1. アクティビティのレイアウト ファイルでフラグメントを <fragment> 要素として定義する
+    1. アプリのコードで既存の ViewGroup に追加します。
