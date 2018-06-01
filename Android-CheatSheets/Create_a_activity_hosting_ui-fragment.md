@@ -1,12 +1,5 @@
-
-create a UI
-manage a UI
-interact with the model object
-
-CrimeActivity -> CrimeFragment - 1 crime(model)
-
 - ここでは、
-    - UIを持つFragmentの実装方法を記載する。（UI Fragmentと呼ぶ）
+    - Activityが自身のUIとしてFragmentを起動する際の方法を記載する。（この場合のFragmentをUI Fragmentと呼ぶ） Hosting UI Fragment
     - UIを持たないFragmentは、アクティビティのバックグラウンド動作を提供する
 - Hosting a UI Fragmentをするために必要なこと
     1. define a spot in its layout for the fragment's view
@@ -26,12 +19,12 @@ CrimeActivity -> CrimeFragment - 1 crime(model)
     - 参照
         - [フラグメントをアクティビティに追加する](https://developer.android.com/guide/components/fragments#Adding)
 - 実装前の注意事項
-    - Fragmentクラスは2種類ある
+    - Fragment（FragmentManager）クラスは2種類ある
         1.  android.app
             - Fragmentが導入されたAPI 11のnativeのFragment
         2. android.support.v4.app
             - support libraly版のFragment. support libralyは実行環境のAndroidのバージョンより新しいバージョンのAPIを使えるように設計されている。
-            - **基本はこっちを使用する**
+            - **Fragment, FragmentManagerはこっちを通常使用する**
     -  ここで作成するUI Fragmentは **controller**.
         - interacts with model and virew object.
     - FragmentとActivityではviewのインスタンスを取得するまでの流れ若干違う
@@ -54,6 +47,13 @@ CrimeActivity -> CrimeFragment - 1 crime(model)
                 - Fragment
                     -  inflateメソッドが返すviewインスタンスをローカル変数に代入
                         - なので、View.findViewById(R.id.crime_title)でViewのローカル変数経由で取得
+    - FragmentManager
+        - FragmentManagerは次の2つを管理する
+            1. Fragmentのlist
+            2. FragmentTransactionのback stack
+        - containerのレイアウトのIDをlistのIDとして利用する目的
+            1. そのFragmentがActivityのViewのどこに表示するかをFragmentMangerに伝える
+            2. FragmentManagerのlist内のFragmentの識別子として使われる（Fragment自身のレイアウトのIDではない）
 - 実装の流れ
     1. Fragmentと紐づくModelクラスを作成する
         - packageの上で右クリック -> New -> Java Class
@@ -109,4 +109,23 @@ CrimeActivity -> CrimeFragment - 1 crime(model)
                             return v;
                         }
                     ```
-        3. hhhh
+        3. 親ActivityのonCreateメソッド内でFragmentMangerを取得する
+            - Activityの画面となるUI FragmentなのでActivity起動時に呼び出す
+            ```java
+            FragmentManager fm = getSupportFragmentManager();
+            ```
+        4. findFragmentByIdメソッドでcontainerのview ID を指定して、FragmentManagerのlistからFragmentを取得する
+            - **初回はlistに指定されたFragmentはないのでnull**
+            - destroy後のActivity再作成時にはここでFragmentを取得できる
+            - **IDはFragment自身のレイアウトのIDではなく、ホストするcontainerのID**
+            ```java
+            Fragment fragment = fm.findFragmentById(R.id.fragment_container);
+            ```
+        5.  もしFragmentが取得できなかった場合は、子Fragmentを作成し、listに追加する。なお、**listへの追加などの作業もtransactionを発行して行う。**
+            - IDと追加するFragmentを指定して追加
+            ```java
+            if (fragment == null) {
+                    fragment = new CrimeFragment();
+                    fm.beginTransaction().add(R.id.fragment_container, fragment).commit();
+            }
+            ```

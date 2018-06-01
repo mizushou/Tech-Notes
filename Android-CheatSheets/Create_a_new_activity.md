@@ -10,7 +10,7 @@
     - Activityを作成することで、manifestへの登録、 対応するlayoutを用意してくれる。
 2. 作成したActivityに以下を用意
     1. TAG
-        ```
+        ```java
         private static final String TAG = "CheatActivity";
         ```
     2. onCreate以外のcallbackメソッド（各メソッド内にLogを入れておく）
@@ -19,7 +19,7 @@
         1. onPause
         1. onStop
         1. onDestroy
-          ```
+          ```java
           @Override
           protected void onStart() {
             super.onStart();

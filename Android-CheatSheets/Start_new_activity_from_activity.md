@@ -6,7 +6,7 @@
     1. 起動する側のActivity内でintentを作る
     1. 起動する側のActivity内でstartActivityメソッドを呼ぶ
 - 起動に使うメソッド
-    ```
+    ```java
     // OS（ActiviyManager）に起動依頼を送る
     public void statActivity(Intent intent)
     ```
@@ -16,7 +16,7 @@
     - Contextは起動するActivityが属するパッケージを指定
     - Classは起動したいActivityを指定
     - この2つの引数でcomponentを特定する
-    ```    
+    ```java
     public Intent(Context packageContext, Class<?> cls)
     ```
 - explicit intent? inplicit intent?
@@ -37,7 +37,7 @@
     1. 起動側のActivity内でstartActivityメソッドを呼ぶ
     1. 起動される側で、intentからextraを取得し、メンバー変数として保存する
 - 起動に 使うメソッド
-    ```
+    ```java
     // OS（ActiviyManager）に起動依頼を送る
     public void statActivity(Intent intent)
     ```
@@ -49,25 +49,25 @@
     - Contextは起動するActivityが属するパッケージを指定
     - Classは起動したいActivityを指定
     - この2つの引数で特定のcomponentを特定する
-    ```
+    ```java
     public Intent(Context packageContext, Class<?> cls)
     ```
 - extraをputするために使うのメソッド
     - 一個目のパラメーターはkey
     - 二個目のパラメーターは値
-    ```
+    ```java
     public Intent putExtra (String name, ? value)
     ```
 - Intentを取得するためのメソッド
     - このメソッドが返すintentは起動側のActivityが渡したintent。つまり、statActivity(Intent)に渡したIntent.
-    ```
+    ```java
     Activiy.getIntent()
     ```
 - extraを取得するために使うメソッド
     - 一個目の引数はkey
     - 二個目の引数はkeyがない場合の値
-    ```
-    public bookean getBooleanExtra(String name, boolean defalutValue)
+    ```java
+    public boolean getBooleanExtra(String name, boolean defalutValue)
     ```
 - explicit intent? inplicit intent?
     - explicit
@@ -98,7 +98,7 @@
 - 起動に使うメソッド
     - 二個目の引数のrequestCodeは **リクエストの識別子** .callbackがあった際にどのリクエストからのcallbackかを確認するために必要。
     - requestCodeはユーザーが任意で定義する整数値
-    ```
+    ```java
     public void statActivityForResult(Intent intent, int requestCode)
     ```
 - 使うintentの情報
@@ -109,13 +109,13 @@
     - Contextは起動するActivityが属するパッケージを指定
     - Classは起動したいActivityを指定
     - この2つの引数で特定のcomponentを特定する
-    ```
+    ```java
     public Intent(Context packageContext, Class<?> cls)
     ```
 - extraをputするために使うためのメソッド
     - 一個目のパラメーターはkey
     - 二個目のパラメーターは値
-    ```
+    ```java
     public Intent putExtra (String name, ? value)
     ```
 - Intentを取得するためのメソッド
@@ -126,8 +126,8 @@
 - extraを取得するために使うメソッド
     - 一個目の引数はkey
     - 二個目の引数はkeyがない場合の値
-    ```
-    public bookean getBooleanExtra(String name, boolean defalutValue)
+    ```java
+    public boolean getBooleanExtra(String name, boolean defalutValue)
     ```
 - result codeをセットするためのメソッド（注：request codeではない）
     - result codeはpredeinedされている次の２つの値を使うのが一般的。
@@ -136,13 +136,13 @@
     - Activiy.RESRST_USERもある
     - result codeで起動側のcallbackメソッドの振る舞いを結果に応じて切り替えることができる
     - result codeをセットするのは必須ではない。セットしない場合は、デフォルトの値を返す。
-    ```
+    ```java
     public final void setResult(int resultCode)
     purlic final void setResult(int resultCode, Intet data) // result codeといっしょにデータ（intent）を返す
     ```
 - resultをhandlingするメソッド
     - このメソッドをoverrideする。resultを受け取った際の処理をここに書く。
-    ```
+    ```java
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     ```
 - explicit intent? inplicit intent?
