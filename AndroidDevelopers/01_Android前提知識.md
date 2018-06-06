@@ -109,3 +109,17 @@
 
 ### バンドル
 [バンドル](https://qiita.com/kojionilk/items/138eea19dadb14997136)
+
+
+### Tool bar
+- 一般名称はアプリバー（またはアクションバー）と呼ばれる。
+- ToolbarはAppCompatライブラリのToolbarウィジェットのこと。現在ではこれをアプリバーとして使用するのが一般的。
+- tool barはAndroid 5.0(Lollipop)以降。それ以前はaction bar。
+> A Toolbar is a generalization of action bars for use within application layouts.
+>
+> a Toolbar may be placed at any arbitrary level of nesting within a view hierarchy.
+
+[アプリバー](https://developer.android.com/training/appbar/)
+
+### Support library
+[Support Library](https://developer.android.com/topic/libraries/support-library/)

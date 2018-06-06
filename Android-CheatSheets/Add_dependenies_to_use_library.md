@@ -15,3 +15,8 @@
     3. Add the dependencies
         - press [+] button -> choose Libray dependency
             - ex) appcompan-v7
+    4. (Support Libraryなどの場合のみ) minSdkVersionを設定する
+        - app/build.gradleでminSdkVersion の設定を設定
+        - gradleファイルを更新後はsyncする
+- 参照（gradleファイルを直接更新する場合）
+    - [Support Library のセットアップ](https://developer.android.com/topic/libraries/support-library/setup)
