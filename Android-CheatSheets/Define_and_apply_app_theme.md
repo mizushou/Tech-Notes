@@ -23,7 +23,7 @@
                 - text fieldとかcheckboxの色など
 - 実装の流れ
     1. style.xmlでthemeの定義をする
-        ```
+        ```xml
         <resources>
 
             <!-- Base application theme. -->
@@ -37,7 +37,7 @@
         </resources>
         ```
     2. color.xmlでthemeで使用する色を定義
-    ```
+    ```xml
     <?xml version="1.0" encoding="utf-8"?>
         <resources>
             <color name="colorPrimary">#008577</color>
@@ -46,7 +46,7 @@
         </resources>
     ```
     3. Androidmanifestで指定。（Viewと違ってlayoutでは指定しない）
-    ```
+    ```xml
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
