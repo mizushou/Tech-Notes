@@ -186,7 +186,6 @@
                 }
                 ```
 
-                ```
             1. CursorWrapperクラスを拡張して、select結果（生データ）をmodelに変換するメソッドを持つクラスを作成する
                 - このクラスを噛ませる理由は、CrusorをCursorWrapperに食わせてmodelに変換するという処理を毎回やるのを防ぐため
                 - getCrime()がselect結果からcrimeインスタンスに変換する便利メソッド
@@ -252,8 +251,8 @@
             ```java
             public Crime getCrime(UUID id) {
 
-                  CrimeCursorWrapper cursor =
-                      queryCrimes(CrimeTable.Cols.UUID + " =?", new String[] {id.toString()});
+             CrimeCursorWrapper cursor =
+                    queryCrimes(CrimeTable.Cols.UUID + " =?", new String[] {id.toString()});
 
                   try {
                     if (cursor.getCount() == 0) {
@@ -265,7 +264,7 @@
                   } finally {
                     cursor.close();
                   }
-          }
+            }
             ```
     6. sanpshotの同期
         1. mCrimes@CrimeAdapterを最新に同期する処理を追加する
