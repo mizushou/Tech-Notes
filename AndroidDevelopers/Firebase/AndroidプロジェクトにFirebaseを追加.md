@@ -49,15 +49,15 @@
             ```
             ```
             -list
-         {-alias alias} {-storetype storetype} {-keystore keystore} [-storepass storepass]
-         {-providerName provider_name}
-         {-providerClass provider_class_name {-providerArg provider_arg}}
-         {-v | -rfc} {-protected} {-Jjavaoption}
-         aliasで特定されるキーストア・エントリの内容をstdoutに出力します。aliasが指定されていない場合は、キーストア全体の内容が表示されます。
-         このコマンドは、デフォルトでは証明書のSHA1フィンガープリントを表示します。 -vオプションが指定されている場合は、所有者、発行者、シリアル番号、拡張機能などの付加的
-         な情報とともに、人間が読むことのできる形式で証明書が表示されます。-rfcオプションが指定されている場合は、出力可能符号化方式で証明書の内容が出力されます。出力可能
-         符号化方式は、インターネットRFC 1421証明書符号化規格で定義されています。
-         -vオプションと-rfcオプションを同時に指定することはできません。
+             {-alias alias} {-storetype storetype} {-keystore keystore} [-storepass storepass]
+             {-providerName provider_name}
+             {-providerClass provider_class_name {-providerArg provider_arg}}
+             {-v | -rfc} {-protected} {-Jjavaoption}
+             aliasで特定されるキーストア・エントリの内容をstdoutに出力します。aliasが指定されていない場合は、キーストア全体の内容が表示されます。
+             このコマンドは、デフォルトでは証明書のSHA1フィンガープリントを表示します。 -vオプションが指定されている場合は、所有者、発行者、シリアル番号、拡張機能などの付加的
+             な情報とともに、人間が読むことのできる形式で証明書が表示されます。-rfcオプションが指定されている場合は、出力可能符号化方式で証明書の内容が出力されます。出力可能
+             符号化方式は、インターネットRFC 1421証明書符号化規格で定義されています。
+             -vオプションと-rfcオプションを同時に指定することはできません。
             ```
             - 作成手順
                 1. 既存のdebug.keystore(パスワードはandroid)から電子署名作成
@@ -90,6 +90,7 @@
     - Firebase client libraryをインポート・ビルドするためにgradle fileを更新
         1. build.gradle(module)
             - リポジトリの追加
+            - この時点でsyncはしない。
             - パス : <Project>/build.gradle  (ルートにある)
             ```
             dependencies {
@@ -102,6 +103,7 @@
             - pluginの追加
             - パス : <Project>/app/build.gradle (app配下にある)
                 1. 最終行に追加
+                    - 　google play service pluginをapplyする。これがgoogle-service.jsonを読み込む。
                     ```
                     apply plugin: 'com.google.gms.google-services'
                     ```
